@@ -38,7 +38,7 @@ jobs:
   add-reviews:
     runs-on: ubuntu-latest
     steps:
-      - uses: sr-caprx/team-request-review-action@[RELEASE]
+      - uses: sr-caprx/team-request-review@vX.X
         with:
           config: ".github/team-request-review.yml" # Config name
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # Github token
