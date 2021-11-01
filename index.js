@@ -50,9 +50,7 @@ async function getDesiredReviewAssignments(client, config) {
 
     const includeDraft = true;
     const author = github.context.payload.pull_request.user.login;
-    console.log(github.context.payload.pull_request);
-    console.log(github.context.payload.pull_request.labels);
-    const labels = getLabels(client,github.context.payload.pull_request.number);
+    const labels = await getLabels(client,github.context.payload.pull_request.number);
     const reviewerAssignments = {
         individuals: new Set(),
         teams: new Set()
