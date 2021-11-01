@@ -50,6 +50,7 @@ async function getDesiredReviewAssignments(client, config) {
 
     const includeDraft = true;
     const author = github.context.payload.pull_request.user.login;
+    console.log(github.context.payload.pull_request);
     console.log(github.context.payload.pull_request.labels);
     const labels = github.context.payload.pull_request.labels.map(l => l.name);
     const reviewerAssignments = {
