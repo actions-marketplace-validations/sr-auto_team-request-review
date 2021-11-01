@@ -71,8 +71,14 @@ async function getDesiredReviewAssignments(client, config) {
         if (condition.label){
             labelSet = condition.label.nameIs;
         }
-        const individualAssignments = condition.assign.individuals || [];
-        const teamAssignments = condition.assign.teams.map(t => 'teams:@capitalrx/'+t) || [];
+        let individualIgnores = [];
+        let teamIgnores = [];
+        if (condition.exclude){
+            individualIgnores = condition.exclude.individuals;
+            teamIgnores = condition.exclude.teams;
+        }
+        const individualAssignments = condition.assign.individuals.filter(value => !individualIgnores.includes(value)) || [];
+        const teamAssignments = condition.assign.teams.filter(value => !teamIgnores.includes(value)) || [];
 
         if (authorIgnoreSet.includes(author)) {
             continue;

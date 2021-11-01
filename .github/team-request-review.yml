@@ -7,6 +7,11 @@ when:
         - ReviewTeam4
       individuals:
         - Reviewer3
+    exclude:
+      teams:
+        - ReviewTeam1
+      individuals:
+        - Reviewer9
   - author:
       nameIs: 
         - Author3
