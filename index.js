@@ -112,11 +112,12 @@ async function getDesiredReviewAssignments(client, config) {
 
 async function getLabels(client, number) {
     if (number) {
-        return await client.pulls.get({
+        const response = await client.pulls.get({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
             pull_number: github.context.payload.pull_request.number
         });
+        return response;
     }
 }
 
