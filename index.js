@@ -52,7 +52,7 @@ async function getDesiredReviewAssignments(client, config) {
     const author = github.context.payload.pull_request.user.login;
     console.log(github.context.payload.pull_request);
     console.log(github.context.payload.pull_request.labels);
-    const labels = github.context.payload.pull_request.labels.map(l => l.name);
+    const labels = getLabels(client,github.context.payload.pull_request.number);
     const reviewerAssignments = {
         individuals: new Set(),
         teams: new Set()
@@ -108,6 +108,16 @@ async function getDesiredReviewAssignments(client, config) {
     console.log('Reviewer Assignments:');
     console.log(reviewerAssignments);
     return reviewerAssignments;
+}
+
+async function getLabels(client, number) {
+    if (number) {
+        return await client.pulls({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            pull_number: github.context.payload.pull_request.number
+        });
+    }
 }
 
 async function isOnTeam(client, author, teams) {
