@@ -57,10 +57,18 @@ async function getDesiredReviewAssignments(client, config) {
     }
 
     for (const condition of config.when) {
-        const authorSet = condition.author.nameIs || [];
-        const authorIgnoreSet = condition.author.ignore.nameIs || [];
-        const teamSet = condition.author.teamIs || [];
-        const labelSet = condition.label.nameIs || [];
+        let authorSet = [];
+        let authorIgnoreSet = [];
+        let teamSet = [];
+        let labelSet = [];
+        if (condition.author){
+            authorSet = condition.author.nameIs;
+            authorIgnoreSet = condition.author.ignore.nameIs;
+            teamSet = condition.author.teamIs;
+        }
+        if (condition.label){
+            labelSet = condition.label.nameIs;
+        }
         const individualAssignments = condition.assign.individuals || [];
         const teamAssignments = condition.assign.teams || [];
 
