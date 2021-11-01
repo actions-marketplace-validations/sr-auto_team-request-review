@@ -115,10 +115,11 @@ async function getLabels(client, number) {
             repo: github.context.repo.repo,
             pull_number: github.context.payload.pull_request.number
         });
+        let labels = [];
         if (response.status == 200 && response.data.state != "pending") {
-            response = response.data.labels.map(l => l.name);
+            labels = response.data.labels.map(l => l.name);
         }
-        return response;
+        return labels;
     }
 }
 
