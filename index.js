@@ -55,6 +55,8 @@ async function getDesiredReviewAssignments(client, config) {
         individuals: new Set(),
         teams: new Set()
     }
+    console.log(labels);
+    console.log(config.when);
 
     for (const condition of config.when) {
         let authorSet = [];
@@ -75,7 +77,7 @@ async function getDesiredReviewAssignments(client, config) {
         if (authorIgnoreSet.includes(author)) {
             continue;
         }
-
+        console.log(labelSet);
         const isAuthorOfInterest = authorSet.includes(author);
         const isOnTeamOfInterest = await isOnTeam(client, author, teamSet);
         const containsLabelOfInterest = labelSet.filter(value => labels.includes(value)).length != 0;
