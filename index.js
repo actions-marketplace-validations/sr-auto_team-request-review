@@ -72,7 +72,7 @@ async function getDesiredReviewAssignments(client, config) {
             labelSet = condition.label.nameIs;
         }
         const individualAssignments = condition.assign.individuals || [];
-        const teamAssignments = condition.assign.teams || [];
+        const teamAssignments = condition.assign.teams.map(t => 'teams:@capitalrx/'+t) || [];
 
         if (authorIgnoreSet.includes(author)) {
             continue;
