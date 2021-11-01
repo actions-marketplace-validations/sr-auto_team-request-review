@@ -64,21 +64,27 @@ async function getDesiredReviewAssignments(client, config) {
         let teamSet = [];
         let labelSet = [];
         if (condition.author){
-            authorSet = condition.author.nameIs;
-            authorIgnoreSet = condition.author.ignore.nameIs;
-            teamSet = condition.author.teamIs;
+            authorSet = condition.author.nameIs || [];
+            authorIgnoreSet = condition.author.ignore.nameIs || [];
+            teamSet = condition.author.teamIs || [];
         }
         if (condition.label){
-            labelSet = condition.label.nameIs;
+            labelSet = condition.label.nameIs || [];
         }
         let individualIgnores = [];
         let teamIgnores = [];
         if (condition.exclude){
-            individualIgnores = condition.exclude.individuals;
-            teamIgnores = condition.exclude.teams;
+            individualIgnores = condition.exclude.individuals || [];
+            teamIgnores = condition.exclude.teams || [];
         }
-        const individualAssignments = condition.assign.individuals.filter(value => !individualIgnores.includes(value)) || [];
-        const teamAssignments = condition.assign.teams.filter(value => !teamIgnores.includes(value)) || [];
+        let individualAssignments = [];
+        if (condition.assign.individuals){
+            individualAssignments = condition.assign.individuals.filter(value => !individualIgnores.includes(value)) || [];
+        }
+        let teamAssignments = [];
+        if (condition.assign.teams){
+            teamAssignments = condition.assign.teams.filter(value => !teamIgnores.includes(value)) || [];
+        }
 
         if (authorIgnoreSet.includes(author)) {
             continue;
