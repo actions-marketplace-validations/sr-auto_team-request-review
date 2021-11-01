@@ -1,0 +1,17 @@
+name: "Team Request Review"
+author: sr-caprx
+description: Assign reviews to individuals or teams based on the pr's author, author team, or labels.
+branding:
+  icon: user-check
+  color: purple
+inputs:
+  GITHUB_TOKEN:
+    description: "Github token"
+    required: true
+  config:
+    description: "Configuration file"
+    required: true
+    default: ".github/team-request-review.yml"
+runs:
+    using: 'node12'
+    main: 'index.js'

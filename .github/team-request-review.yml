@@ -1,0 +1,18 @@
+when:
+  - label:
+      nameIs: 
+        - App1
+    assign:
+      teams:
+        - ReviewTeam4
+      individuals:
+        - Reviewer3
+  - author:
+      nameIs: 
+        - Author3
+    assign:
+      teams:
+        - ReviewTeam3
+      individuals:
+        - Reviewer1
+  
