@@ -5,9 +5,6 @@ branding:
   icon: user-check
   color: purple
 inputs:
-  GITHUB_TOKEN:
-    description: "Github token"
-    required: true
   config:
     description: "Configuration file"
     required: true
